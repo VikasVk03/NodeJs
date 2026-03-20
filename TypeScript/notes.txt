@@ -1,0 +1,18 @@
+// typescript is globally installed in linux
+
+** commands
+    
+    1. compile/transpile ts file into js
+        tsc fileName
+    then run node fileName to execute code
+    
+    2. directly running ts file, install ts-node
+        ts-node fileName
+    this avoid transpile ts files 
+    make tsconfig.json put it avoid esm error
+    {
+        "compilerOptions": {
+            "module": "CommonJS"
+        }
+    }
+
