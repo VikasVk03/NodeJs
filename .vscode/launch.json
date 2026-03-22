@@ -17,3 +17,8 @@
 }
 
 // in run and debug tab, watch use to track change in value of variablesm, ex: click on + and type name of varible
+
+// * to open serach file menu short cut: ctrl + p;
+
+// we do not put trailing parentheses () in property suggtion
+// we put trailing parentheses in method which is member function of class
