@@ -214,4 +214,47 @@ function logMessage(message: string): void {
   return undefined; // allowed in void
 }
 
-logMessage("Good Morning");
+// logMessage("Good Morning");
+
+// ** type inference & type assertions
+
+/* 
+  * Type inference is TypeScript's ability to automatically deduce the type of a variable, function return, or expression based on its assigned value and context, without requiring explicit type annotations. 
+  
+  * Type assertion is when a developer explicitly overrides TypeScript's inferred type, telling the compiler they know the value's type better in a specific scenario
+
+*/
+
+// type inference
+let userName = "Vikas"; // typescript infers the type as string
+
+// type assertion
+let someValue: any = "Hello world";
+let strLength: number = (someValue as string).length;
+
+// ** union types : allows a variable to be one of several different types, providing flexibility while maintaining type safety. It is defined using the vertical bar (|) symbol to separate each possible typ
+
+let id: string | number; // id can either be string or a number
+id = "abc";
+id = 101;
+
+/* function printId(id: string | number) {
+  console.log(`id: ${id}`);
+}
+printId("abc");
+printId(101); */
+
+// ** type narrowing
+
+function processValue(value: string | number) {
+  if (typeof value === "string") {
+    // Here, 'value' is narrowed to string
+    console.log(value.toUpperCase());
+  } else {
+    // Here, 'value' is narrowed to number
+    console.log(value.toFixed(2));
+  }
+}
+
+// processValue(12);
+// processValue("vk");
