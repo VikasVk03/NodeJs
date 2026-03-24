@@ -258,3 +258,146 @@ function processValue(value: string | number) {
 
 // processValue(12);
 // processValue("vk");
+
+// ** type Interface - way to structure object, which properties and methods/functions will be defined, ensure type safety by giving type shape to object or class.
+
+/* 
+An interface is a syntactical contract that defines the expected structure of an object, including its properties and methods, without providing implementation details. It is a powerful tool for enforcing consistency and enabling structural typing in TypeScript. 
+*/
+
+// it don't generate code , it is used for type checking and type safety
+interface Person {
+  name: string;
+  age: number;
+  greet(): void;
+}
+
+let person: Person = {
+  // this object will only accept properties and methods defined in Person interface
+  name: "vikas",
+  age: 12,
+  greet() {
+    console.log("Hi");
+  },
+};
+
+// person.greet();
+
+// ** interface with function types
+
+interface Mathop {
+  (a: number, b: number): number;
+}
+
+const add: Mathop = (x, y) => x + y;
+const subtract: Mathop = (x, y) => x - y;
+
+// console.log("Add: ", add(2, 4));
+// console.log("Subtract: ", subtract(5, 3));
+
+// ** type alias : a way to give a custom name/ meaningful name (an alias) to any existing type, including primitives, complex object shapes, union types, tuples, and function signatures. This improves code readability, maintainability, and reusability by abstracting complex type definitions
+
+/* Type aliases are defined using the type keyword, followed by the alias name, an equals sign (=), and the type definition. 
+
+* syntax:   type AliasName = TypeDefinition;
+
+
+*/
+
+type UserId = string;
+
+let userId: UserId = "abc";
+
+type Person1 = {
+  name: string;
+  age: number;
+};
+
+let person1: Person1 = {
+  name: "abc",
+  age: 23,
+};
+
+// console.log(person1.name);
+
+type ID = string | number;
+
+let userId1: ID = "abc";
+let orderId: ID = 101;
+
+// ** interface vs type alias
+
+interface User {
+  name: string;
+  phone: number;
+}
+
+//  ** interfaces use the extends keyword to inherit properties and methods from other interfaces, promoting code reuse and creating type hierarchies. An interface can extend one or multiple existing interfaces
+
+//*  extends to inherit another properties of interface
+interface Customer extends User {
+  address: string;
+}
+
+let myCustomer: Customer = {
+  name: "vk",
+  phone: 1234556778,
+  address: "abc",
+};
+
+type Vehicle = {
+  make: string;
+  model: number;
+};
+
+// ** intersection types are a way of combining multiple types into a single new type that possesses all the properties and members of the original types.
+
+// They are defined using the ampersand (&) operator and are useful for composing types and ensuring an object meets multiple contracts simultaneously.
+
+// *  & -> denotes intersection types, it let properties of two type available
+type Car = Vehicle & {
+  isElectric: boolean;
+};
+
+let myCar: Car = {
+  make: "TATA",
+  model: 800,
+  isElectric: true,
+};
+
+type Mathop1 = (a: number, b: number) => number;
+let add1: Mathop1 = (x, y) => x + y;
+console.log(2, 2);
+
+type Status = "active" | "inactive" | "pending";
+
+let userStatus: Status = "active";
+
+type Tree = {
+  value: string;
+  children: Tree[];
+};
+
+let tree: Tree = {
+  value: "root",
+  children: [
+    {
+      value: "child",
+      children: [{ value: "grandChild", children: [] }],
+    },
+  ],
+};
+
+// * intersection types
+
+// ** an optional field is defined by adding a question mark (?) after the property name in a type alias, interface, or class definition. This indicates that the property is not mandatory and can be omitted when creating an object of that type.
+
+let config: { server: string; port: number } & {
+  secure: boolean;
+  timeout?: number;
+} = {
+  server: "localhost",
+  port: 8080,
+  secure: true,
+  // timeout: 5000, // no error if this property not defined
+};
